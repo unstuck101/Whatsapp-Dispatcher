@@ -1,0 +1,18 @@
+[Unit]
+Description=Unstuck WhatsApp Dispatcher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/dispatcher
+EnvironmentFile=/root/dispatcher/.env
+ExecStart=/usr/bin/node /root/dispatcher/index.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment=HOME=/root
+
+[Install]
+WantedBy=multi-user.target
